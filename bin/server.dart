@@ -30,7 +30,7 @@ main() async {
 
 Future<HttpServer> createServer() async {
   final ip = InternetAddress.anyIPv4;
-  final port = int.parse(Platform.environment["PORT"] ?? "8888");
+  final port = int.parse(Platform.environment["PORT"] ?? "8000");
 
   final router = Router()
     ..get('/profile', (Request req) {
