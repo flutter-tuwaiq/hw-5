@@ -6,23 +6,7 @@ import 'package:shelf/shelf_io.dart';
 import 'package:shelf_hotreload/shelf_hotreload.dart';
 import 'package:shelf_router/shelf_router.dart';
 
-List<Map> users = [
-  {
-    "name": "Ali",
-    "address": "Riyadh",
-    "phone": 966538382983,
-  },
-  {
-    "name": "Saad",
-    "address": "Khobar",
-    "phone": 966522098987,
-  },
-  {
-    "name": "Omar",
-    "address": "Jeddah",
-    "phone": 966526773944,
-  }
-];
+List<Map> users = [{}, {}, {}];
 
 main() async {
   withHotreload(() => createServer());
