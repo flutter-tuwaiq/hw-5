@@ -25,16 +25,16 @@ Future<HttpServer> createServer() async {
       info.add(jsonBody);
       return Response.ok("data added successfully...");
     })
-    ..get("/displayprofile", (Request req) {
+    ..get("/profile", (Request req) {
       final jsonBody = json.encode(info);
       return Response.ok(jsonBody);
     })
-    ..get('/displayindex/<index>', (Request req, String index) {
+    ..get('/index/<index>', (Request req, String index) {
       var i = int.parse(index);
       final jsonBody = json.encode(info[i]);
       return Response.ok(jsonBody);
     })
-    ..delete('/deleteindex/<index>', (Request req, String index) {
+    ..delete('/delete/<index>', (Request req, String index) {
       var i = int.parse(index);
       final jsonBody = json.encode(info.removeAt(i));
       return Response.ok(jsonBody);
