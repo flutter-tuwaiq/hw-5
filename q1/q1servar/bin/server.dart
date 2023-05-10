@@ -76,7 +76,7 @@ Future<HttpServer> createServer() async {
 
   final router = Router()
     ..get("/data", (Request req) {
-      final jesonbode = json.encode(mydata3);
+      final jesonbode = json.encode(myinfo);
 
       return Response.ok(jesonbode);
     })
@@ -89,19 +89,19 @@ Future<HttpServer> createServer() async {
       final body = await req.readAsString();
       final Map jesonbode = json.decode(body);
       if (jesonbode.containsKey("name")) {
-        mydata3[int.parse(index)]["name"] = jesonbode["name"];
+        myinfo[int.parse(index)]["name"] = jesonbode["name"];
         return Response.ok("update name.......");
       }
       if (jesonbode.containsKey("phone")) {
-        mydata3[int.parse(index)]["phone"] = jesonbode["phone"];
+        myinfo[int.parse(index)]["phone"] = jesonbode["phone"];
         return Response.ok("update phone.......");
       }
       if (jesonbode.containsKey("cite")) {
-        mydata3[int.parse(index)]["cite"] = jesonbode["cite"];
+        myinfo[int.parse(index)]["cite"] = jesonbode["cite"];
         return Response.ok("update cite.......");
       }
       if (jesonbode.containsKey("poseshin")) {
-        mydata3[int.parse(index)]["poseshin"] = jesonbode.remove(["poseshin"]);
+        myinfo[int.parse(index)]["poseshin"] = jesonbode.remove(["poseshin"]);
         return Response.ok("update poseshin.......");
       }
 
@@ -110,31 +110,23 @@ Future<HttpServer> createServer() async {
     ..delete("/deleteData/<endixDelete>",
         (Request req, String endixDelete) async {
       final body = await req.readAsString();
+
       final Map jesonbode = json.decode(body);
-      if (jesonbode.containsKey("name") &&
-          mydata3[int.parse(endixDelete)]["name"] == jesonbode["name"] &&
-          jesonbode["name"] == jesonbode["name"] + ".remove") {
-        mydata3[int.parse(endixDelete)]["name"] = jesonbode.remove(["name"]);
+
+      if (jesonbode.containsKey("name") == jesonbode.containsKey("name")) {
+        myinfo.removeAt(int.parse(endixDelete));
         return Response.ok("remove name.......");
       }
-      if (jesonbode.containsKey("phone") &&
-          mydata3[int.parse(endixDelete)]["phone"] == jesonbode["phone"] &&
-          jesonbode["phone"] == jesonbode["phone"] + ".remove") {
-        mydata3[int.parse(endixDelete)]["phone"] = jesonbode.remove(["phone"]);
+      if (jesonbode.containsKey("phone") == "remov") {
+        mydata3.removeAt(int.parse(endixDelete));
         return Response.ok("remove phone.......");
       }
-      if (jesonbode.containsKey("cite") &&
-          mydata3[int.parse(endixDelete)]["cite"] == jesonbode["cite"] &&
-          jesonbode["cite"] == jesonbode["cite"] + ".remove") {
-        mydata3[int.parse(endixDelete)]["cite"] = jesonbode.remove(["cite"]);
+      if (jesonbode.containsKey("cite") == "remov") {
+        mydata3.removeAt(int.parse(endixDelete));
         return Response.ok("remove cite.......");
       }
-      if (jesonbode.containsKey("poseshin") &&
-          mydata3[int.parse(endixDelete)]["poseshin"] ==
-              jesonbode["poseshin"] &&
-          jesonbode["poseshin"] == jesonbode["poseshin"] + ".remove") {
-        mydata3[int.parse(endixDelete)]["poseshin"] =
-            jesonbode.remove(["poseshin"]);
+      if (jesonbode.containsKey("poseshin") == "remov") {
+        mydata3.removeAt(int.parse(endixDelete));
         return Response.ok("remove poseshin.......");
       }
 
